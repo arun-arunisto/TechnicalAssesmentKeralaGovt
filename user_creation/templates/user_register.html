@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Creation</title>
+</head>
+<body>
+<div style="text-align: center">
+  <h2>User Registration</h2>
+</div>
+<div style="text-align: center">
+  {% for message in get_flashed_messages() %}
+    <p>{{message}}</p>
+  {% endfor %}
+</div>
+<div style="text-align: center; padding: 10px;">
+    {{form.hidden_tag()}}
+    <form method="post">
+        {{form.username(placeholder="username", style="width:300px;height:30px;margin: 5px;")}}
+        {% for error in form.username.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        {{form.email(placeholder="email", style="width:300px;height:30px;margin: 5px;")}}
+        {% for error in form.email.errors %}
+            <p>{{form}}</p>
+        {% endfor %}
+        {{form.phone(placeholder="phone no", style="width:300px;height:30px;margin: 5px;")}}
+        {% for error in form.phone.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        {{form.total_price(placeholder="total_price", style="width:300px;height:30px;margin: 5px;")}}
+        {% for error in form.total_price.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        <br>
+        {{ form.csrf_token }}
+        {{form.submit(style="width:150px; height:30px;margin: 5px;")}}
+    </form>
+</div>
+</body>
+</html>

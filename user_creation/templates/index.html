@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        .info {
+            border: solid green 1px;
+            padding: 10px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .table_data {
+            padding: 10px;
+        }
+        .table_data table {
+            margin: 10px auto;
+            border: solid black 1px;
+            width: 75%;
+        }
+        .table_data table th {
+            border: solid red 2px;
+        }
+        .table_data table td {
+            border: solid blue 1px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <h2>Arun Arunisto</h2>
+</div>
+<div style="text-align: center">
+    {% for message in get_flashed_messages() %}
+        <p>{{message}}</p>
+    {% endfor %}
+</div>
+<div class="info">
+    <ul>
+        <li>To register an user <a href="{{url_for('user_bp.user_register')}}">/user_register</a></li>
+        <li>To add a product <a href="{{url_for('user_bp.product_register')}}">/product_register</a> </li>
+    </ul>
+</div>
+<div class="table_data">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+        </tr>
+        {% for user in data.users %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="table_data">
+    <table>
+        <tr>
+            <th>User_id</th>
+            <th>Total Price</th>
+            <th>Created at</th>
+        </tr>
+        {% for order in data.orders %}
+            <tr>
+                <td>{{order.user_id}}</td>
+                <td>{{order.total_price}}</td>
+                <td>{{order.created_at}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="table_data">
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+        </tr>
+        {% for product in data.products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

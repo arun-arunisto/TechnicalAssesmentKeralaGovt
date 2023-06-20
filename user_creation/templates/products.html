@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Register</title>
+</head>
+<body>
+<div style="text-align: center">
+  <h2>Product Registration</h2>
+</div>
+<div style="text-align: center">
+  {% for message in get_flashed_messages() %}
+    <p>{{message}}</p>
+  {% endfor %}
+</div>
+<div style="text-align: center">
+    {{form.hidden_tag()}}
+    <form method="post">
+        {{form.product_name(placeholder="product name", style="width:300px;height:30px;margin:5px;")}}
+        {% for error in form.product_name.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        {{form.product_price(placeholder="product price", style="width:300px;height:30px;margin:5px;")}}
+        {% for error in form.product_price.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        <br>
+        {{form.csrf_token}}
+        {{form.submit(style="width:150px;height:30px;")}}
+    </form>
+</div>
+</body>
+</html>
